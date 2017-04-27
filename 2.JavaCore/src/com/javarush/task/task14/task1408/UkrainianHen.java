@@ -8,7 +8,7 @@ public class UkrainianHen extends Hen {
     public int getCountOfEggsPerMonth() {
         return 19;
     }
-    public void getDescription(){
-        return super.getDescription()+"Моя страна - "+UKRAINE+". Я несу "+getCountOfEggsPerMonth()+"яиц в месяц.";
+    public String getDescription(){
+        return super.getDescription()+" Моя страна - "+UKRAINE+". Я несу "+getCountOfEggsPerMonth()+" яиц в месяц.";
     }
 }
