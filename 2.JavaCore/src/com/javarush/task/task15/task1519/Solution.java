@@ -14,31 +14,20 @@ public class Solution {
         String str = null;
         while (!(str = reader.readLine()).equals("exit")) {
             try {
-                str.indexOf(".");
-                Short.parseShort(str);
-                Integer.parseInt(str);
-            }catch (Exception e){print(str);}
 
-
-
-            try {
-                if (str.indexOf(".") > 0) {
+                if (str.contains(".")) {
                     print(Double.parseDouble(str));
-                }
-            } catch (Exception e) {
+                } else
 
 
-            }
-            try {
-                if (Short.parseShort(str) < 128 && Short.parseShort(str) > 0) {
+
+
+                if (Integer.parseInt(str) < 128 && Integer.parseInt(str) > 0) {
                     print(Short.parseShort(str));
                 }
-            } catch (Exception e) {
+           else
 
-            }
-            try {
-
-                if (Integer.parseInt(str) >= 128 || Integer.parseInt(str) <= 0) {
+                if (Integer.parseInt(str) <= 0 || Integer.parseInt(str) >= 128) {
                     print(Integer.parseInt(str));
                 }
             } catch (Exception e) {
