@@ -38,8 +38,12 @@ public class Solution {
         }
 
         public void printCountdown() throws InterruptedException {
-            System.out.println(countFrom);
-            countFrom--;//add your code here - добавь код тут
+
+            Thread.sleep(500);
+            System.out.println(list.get(--countFrom));
+
+        }
+            //add your code here - добавь код тут
         }
     }
-}
+
