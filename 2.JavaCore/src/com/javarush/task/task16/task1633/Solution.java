@@ -18,7 +18,7 @@ public class Solution {
 
     public static class TestedThread extends Thread {
         public TestedThread(Thread.UncaughtExceptionHandler handler) {
-            setUncaughtExceptionHandler(handler);
+            setDefaultUncaughtExceptionHandler(handler);
             start();
         }
 
@@ -26,7 +26,8 @@ public class Solution {
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException x) {
-                throw new unca;
+
+                throw new RuntimeException("My exception message");
             }
         }
     }
