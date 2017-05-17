@@ -1,11 +1,14 @@
+/*
 package com.javarush.task.task17.task1715;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/* 
-Аптека
 */
+/*
+Аптека
+*//*
+
 
 public class Solution {
     public static DrugsController drugsController = new DrugsController();
@@ -49,3 +52,4 @@ public class Solution {
         }
     }
 }
+*/

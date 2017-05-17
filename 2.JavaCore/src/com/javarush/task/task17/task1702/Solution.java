@@ -1,11 +1,11 @@
+
 package com.javarush.task.task17.task1702;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/* 
-Вместе быстрее? Ща проверим :)
-*/
+
+
 
 public class Solution {
     public static int countThreads = 10;
@@ -51,5 +51,12 @@ public class Solution {
             }
         }
     }
+    public static class SortThread extends Thread{
+        @Override
+        public void run() {
+            Solution.sort(testArray);
+        }
+    }
 }
+
 

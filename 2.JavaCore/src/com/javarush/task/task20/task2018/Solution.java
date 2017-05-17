@@ -1,10 +1,13 @@
+/*
 package com.javarush.task.task20.task2018;
 
 import java.io.Serializable;
 
-/* 
-Найти ошибки
 */
+/*
+Найти ошибки
+*//*
+
 public class Solution {
     public static class A {
         protected String name = "A";
@@ -38,3 +41,4 @@ public class Solution {
         System.out.println(b1.name);
     }
 }
+*/

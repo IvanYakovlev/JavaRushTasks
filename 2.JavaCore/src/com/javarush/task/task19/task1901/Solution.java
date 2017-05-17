@@ -1,8 +1,11 @@
+/*
 package com.javarush.task.task19.task1901;
 
-/* 
-TableAdapter
 */
+/*
+TableAdapter
+*//*
+
 
 public class Solution {
     public static void main(String[] args) {
@@ -35,4 +38,4 @@ public class Solution {
     public interface BTable {
         String getHeaderText();
     }
-}
+}*/
