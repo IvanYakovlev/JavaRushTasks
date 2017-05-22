@@ -1,14 +1,10 @@
-/*
 package com.javarush.task.task17.task1715;
+
+import com.javarush.task.task17.task1715.Drug;
+import com.javarush.task.task17.task1715.DrugsController;
 
 import java.util.ArrayList;
 import java.util.List;
-
-*/
-/*
-Аптека
-*//*
-
 
 public class Solution {
     public static DrugsController drugsController = new DrugsController();
@@ -27,12 +23,23 @@ public class Solution {
         isStopped = true;
     }
 
-    public static class Apteka {
+    public static class Apteka implements Runnable{
+        public void run(){
+            while (!isStopped){
+                drugsController.buy(getRandomDrug(),getRandomCount());
+                waitAMoment();
+            }
+        }
 
     }
 
-    public static class Person {
-
+    public static class Person implements Runnable {
+        public void run() {
+            while (!isStopped) {
+                drugsController.sell(getRandomDrug(), getRandomCount());
+                waitAMoment();
+            }
+        }
     }
 
     public static int getRandomCount() {
@@ -41,7 +48,7 @@ public class Solution {
 
     public static Drug getRandomDrug() {
         int index = (int) ((Math.random() * 1000) % (drugsController.allDrugs.size()));
-        List<Drug> drugs = new ArrayList<>(drugsController.allDrugs.keySet());
+        List<Drug> drugs = new ArrayList<>((drugsController.allDrugs.keySet()));
         return drugs.get(index);
     }
 
@@ -52,4 +59,4 @@ public class Solution {
         }
     }
 }
-*/
+

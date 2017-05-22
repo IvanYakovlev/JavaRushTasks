@@ -4,7 +4,7 @@ package com.javarush.task.task17.task1714;
 Comparable
 */
 
-public class Beach {
+public class Beach implements Comparable{
     private String name;      //название
     private float distance;   //расстояние
     private int quality;    //качество
@@ -41,5 +41,10 @@ public class Beach {
 
     public static void main(String[] args) {
 
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }

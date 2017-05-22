@@ -49,7 +49,7 @@ public class Solution {
         @Override
         public void run() {
             do {
-                synchronized (Counter.class) {
+                synchronized (this) {
                     incrementCount();
                     values[getCount()]++;
                 }

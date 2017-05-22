@@ -26,7 +26,7 @@ public class Solution {
             returnIron();
         }
 
-        protected Iron takeIron() {
+        protected synchronized Iron takeIron() {
             System.out.println("Taking an Iron");
             return new Iron();
         }
