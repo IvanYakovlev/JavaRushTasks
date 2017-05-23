@@ -1,8 +1,11 @@
+/*
 package com.javarush.task.task18.task1811;
 
-/* 
-Wrapper (Decorator)
 */
+/*
+Wrapper (Decorator)
+*//*
+
 
 public class Solution {
 
@@ -32,3 +35,4 @@ public class Solution {
     }
 
 }
+*/
