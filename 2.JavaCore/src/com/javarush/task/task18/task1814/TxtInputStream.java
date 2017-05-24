@@ -1,12 +1,15 @@
+/*
 package com.javarush.task.task18.task1814;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-/* 
-UnsupportedFileName
 */
+/*
+UnsupportedFileName
+*//*
+
 
 public class TxtInputStream extends FileInputStream {
 
@@ -17,3 +20,4 @@ public class TxtInputStream extends FileInputStream {
     }
 }
 
+*/
