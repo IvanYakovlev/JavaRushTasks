@@ -1,10 +1,8 @@
-/*
+
 package com.javarush.task.task18.task1811;
 
-*/
-/*
-Wrapper (Decorator)
-*//*
+
+
 
 
 public class Solution {
@@ -33,6 +31,19 @@ public class Solution {
             component.run();
         }
     }
+    public static class DecoratorMyRunnableImpl implements Runnable {
+        private Runnable component;
+
+        public DecoratorMyRunnableImpl(Runnable component) {
+            this.component = component;
+        }
+
+        @Override
+        public void run() {
+            System.out.print("DecoratorMyRunnableImpl body ");
+            component.run();
+        }
+    }
 
 }
-*/
+
