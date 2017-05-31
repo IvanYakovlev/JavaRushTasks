@@ -19,8 +19,9 @@ public class Solution {
             if (b==' '||file1.available()==0){
                 double a=Double.parseDouble(String.valueOf(sb));
                 int  res=(int) Math.round(a);
-                file2.write(res);
-                System.out.println(res);
+                file2.write(Integer.toString(res));
+                if (file1.available()==0){}else
+                {file2.write(" ");}
                 sb.delete(0,sb.length());
             }
         }
