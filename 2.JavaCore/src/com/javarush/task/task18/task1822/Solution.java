@@ -13,21 +13,15 @@ import java.util.Map;
 
 public class Solution {
     public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        FileReader file  = new FileReader(reader.readLine());
-        Map<Integer, Product> map = new HashMap<>();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader f = new BufferedReader(new FileReader(br.readLine()));
+        br.close();
 
-
-    }
-}
-class Product {
-    String name;
-    Double price;
-    int quantity;
-
-    public Product(String name, Double price, int quantity) {
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
+        while (f.ready()) {
+            String s = f.readLine();
+            if (s.startsWith(args[0]))
+                System.out.println(s);
+        }
+        f.close();
     }
 }
