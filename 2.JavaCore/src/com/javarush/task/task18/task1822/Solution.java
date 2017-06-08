@@ -14,20 +14,13 @@ import java.util.Map;
 public class Solution {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        FileReader file  = new FileReader(reader.readLine());
-        Map<Integer, Product> map = new HashMap<>();
-
-
+        BufferedReader file = new BufferedReader(new FileReader(reader.readLine()));
+        while (file.ready()){
+            String a =file.readLine();
+            if (a.startsWith("14")){
+                System.out.println(a);
+            }
+        }
     }
 }
-class Product {
-    String name;
-    Double price;
-    int quantity;
 
-    public Product(String name, Double price, int quantity) {
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
-    }
-}
