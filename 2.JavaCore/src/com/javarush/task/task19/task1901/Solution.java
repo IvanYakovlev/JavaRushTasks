@@ -1,10 +1,10 @@
-/*
+
 package com.javarush.task.task19.task1901;
 
-*/
+
 /*
 TableAdapter
-*//*
+*/
 
 
 public class Solution {
@@ -26,8 +26,17 @@ public class Solution {
         System.out.println(table.getHeaderText());
     }
 
-    public static class TableAdapter {
+    public static class TableAdapter implements BTable {
+        private ATable aTable;
+        public TableAdapter(ATable aTable) {
+            this.aTable=aTable;
+        }
 
+
+        @Override
+        public String getHeaderText() {
+            return aTable.getCurrentUserName()+":"+aTable.getTableName();
+        }
     }
 
     public interface ATable {
@@ -38,4 +47,4 @@ public class Solution {
     public interface BTable {
         String getHeaderText();
     }
-}*/
+}
