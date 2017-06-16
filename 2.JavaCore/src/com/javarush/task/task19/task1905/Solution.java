@@ -14,8 +14,37 @@ public class Solution {
 
     }
 
-    public static class DataAdapter {
+    public static class DataAdapter implements RowItem{
+        private Customer customer;
+        private Contact contact;
         public DataAdapter(Customer customer, Contact contact) {
+            this.contact=contact;
+            this.customer=customer;
+        }
+
+        @Override
+        public String getCountryCode() {
+            return null;
+        }
+
+        @Override
+        public String getCompany() {
+            return customer.getCompanyName();
+        }
+
+        @Override
+        public String getContactFirstName() {
+            return null;
+        }
+
+        @Override
+        public String getContactLastName() {
+            return null;
+        }
+
+        @Override
+        public String getDialString() {
+            return null;
         }
     }
 

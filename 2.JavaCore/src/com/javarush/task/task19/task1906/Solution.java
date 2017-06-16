@@ -4,7 +4,19 @@ package com.javarush.task.task19.task1906;
 Четные байты
 */
 
+import java.io.*;
+
 public class Solution {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws  IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        FileReader file1 = new FileReader(reader.readLine());
+        FileWriter file2 = new FileWriter(reader.readLine());
+        reader.close();
+
+    while (file1.ready()){
+        if (file1.read()%2==0){
+            file2.write(file1.read());
+        }
+    }
     }
 }
