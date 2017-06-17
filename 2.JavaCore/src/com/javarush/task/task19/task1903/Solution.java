@@ -1,7 +1,7 @@
 package com.javarush.task.task19.task1903;
 
 /* 
-Адаптация нескольких интерфейсов
+Адаптация нескольких интерфейсовasdas
 */
 
 import java.util.HashMap;
