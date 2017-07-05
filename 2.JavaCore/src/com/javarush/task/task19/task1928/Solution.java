@@ -13,7 +13,7 @@ public class Solution {
         System.out.println("it's Solution class");
     }
 
-    public static void main(String... args) throws IOException {
+    public static void main(String[] args) throws IOException {
         try (
                 FileOutputStream outputStream = new FileOutputStream(args[0]);
                 InputStream is = Solution.class.getClassLoader().getResourceAsStream(args[1]);
