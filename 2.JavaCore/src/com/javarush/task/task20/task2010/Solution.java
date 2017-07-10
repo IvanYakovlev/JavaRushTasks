@@ -1,10 +1,12 @@
 package com.javarush.task.task20.task2010;
 
-/* 
+import java.io.Serializable;
+
+/*
 Как сериализовать что-то свое?
 */
 public class Solution {
-    public static class Object {
+    public static class Object implements Serializable{
         public String string1;
         public String string2;
     }
