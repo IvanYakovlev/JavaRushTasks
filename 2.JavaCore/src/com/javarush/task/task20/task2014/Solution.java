@@ -1,19 +1,30 @@
 package com.javarush.task.task20.task2014;
 
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /* 
 Serializable Solution
 */
-public class Solution {
-    public static void main(String[] args) {
-        System.out.println(new Solution(4));
+public class Solution  implements Serializable {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+       ObjectOutputStream ObjOut = new ObjectOutputStream(new FileOutputStream("C:/1.txt"));
+        Solution savedObject = new Solution(4);
+        ObjOut.writeObject(savedObject);
+        ObjOut.flush();
+        ObjOut.close();
+
+        Solution loadedObject = new Solution(14);
+        System.out.println(loadedObject);
+        ObjectInputStream ObjIn = new ObjectInputStream(new FileInputStream("C:/1.txt"));
+        loadedObject = (Solution) ObjIn.readObject();
+        System.out.println(savedObject.string.equals(loadedObject.string));
     }
 
-    private final String pattern = "dd MMMM yyyy, EEEE";
-    private Date currentDate;
-    private int temperature;
+    private transient final String pattern = "dd MMMM yyyy, EEEE";
+    private transient Date currentDate;
+    private transient int temperature;
     String string;
 
     public Solution(int temperature) {

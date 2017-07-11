@@ -1,4 +1,4 @@
-/*
+
 package com.javarush.task.task20.task2015;
 
 import java.io.IOException;
@@ -6,13 +6,13 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-*/
+
 /*
 Переопределение сериализации
-*//*
+*/
 
-public class Solution implements {
-    private Thread runner;
+public class Solution implements Serializable,Runnable{
+    private transient Thread runner;
     private int speed;
 
     public Solution(int speed) {
@@ -25,14 +25,14 @@ public class Solution implements {
         // do something here, does not matter
     }
 
-    */
+
 /**
      Переопределяем сериализацию.
      Для этого необходимо объявить методы:
      private void writeObject(ObjectOutputStream out) throws IOException
      private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException
      Теперь сериализация/десериализация пойдет по нашему сценарию :)
-     *//*
+     */
 
     private void writeObject(ObjectOutputStream out) throws IOException {
         out.defaultWriteObject();
@@ -40,10 +40,12 @@ public class Solution implements {
 
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
+        Thread thread = new Thread();
+        thread.start();
     }
 
     public static void main(String[] args) {
 
     }
 }
-*/
+

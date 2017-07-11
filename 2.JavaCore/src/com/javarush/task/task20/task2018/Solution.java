@@ -1,12 +1,14 @@
-/*
+
 package com.javarush.task.task20.task2018;
 
-import java.io.Serializable;
+import java.io.*;
 
-*/
+import static java.lang.System.in;
+
+
 /*
 Найти ошибки
-*//*
+*/
 
 public class Solution {
     public static class A {
@@ -19,10 +21,20 @@ public class Solution {
 
     public class B extends A implements Serializable {
         public B(String name) {
+
             super(name);
             this.name += name;
         }
+        public void writeObject(ObjectOutputStream out) throws IOException {
+            out.defaultWriteObject();
+            out.writeObject(name);
+        }
+
+        public void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+            in.defaultReadObject();
+        }
     }
+
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
@@ -41,4 +53,4 @@ public class Solution {
         System.out.println(b1.name);
     }
 }
-*/
+

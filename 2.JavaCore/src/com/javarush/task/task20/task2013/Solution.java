@@ -1,4 +1,4 @@
-/*
+package com.javarush.task.task20.task2013;/*
 package com.javarush.task.task20.task2013;
 
 import java.io.Externalizable;
@@ -10,10 +10,16 @@ import java.util.List;
 */
 /*
 Externalizable Person
-*//*
+*/
+
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
+import java.util.List;
 
 public class Solution {
-    public static class Person {
+    public static class Person implements Externalizable{
         private String firstName;
         private String lastName;
         private int age;
@@ -25,8 +31,8 @@ public class Solution {
             this.firstName = firstName;
             this.lastName = lastName;
             this.age = age;
-        }*/
-/**//*
+        }
+
 
 
         public void setMother(Person mother) {
@@ -41,8 +47,8 @@ public class Solution {
             this.children = children;
         }
 
-        */
-/**//*
+
+
 @Override
         public void writeExternal(ObjectOutput out) throws IOException {
             out.writeObject(mother);
@@ -68,4 +74,4 @@ public class Solution {
 
     }
 }
-*/
+
