@@ -2,6 +2,10 @@ package com.javarush.task.task20.task2023;
 
 /* 
 Правильный вывод
+C class, method2
+A class, method2
+A class, method1
+B class, method1
 */
 public class Solution {
     public static void main(String[] s) {
@@ -10,17 +14,19 @@ public class Solution {
     }
 
     public static class A {
-        public void method1() {
+        private void method1() {
             System.out.println("A class, method1");
         }
 
         public void method2() {
             System.out.println("A class, method2");
+            method1();
         }
     }
 
     public static class B extends A {
         public void method1() {
+            super.method2();
             System.out.println("B class, method1");
         }
 
@@ -36,6 +42,7 @@ public class Solution {
 
         public void method2() {
             System.out.println("C class, method2");
+            super.method1();
         }
     }
 }
