@@ -9,9 +9,12 @@ import java.io.*;
 public class Solution {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        FileInputStream file1 = new FileInputStream(reader.readLine());
-        FileWriter file2 = new FileWriter(reader.readLine());
+        String a1=reader.readLine();
+        String a2=reader.readLine();
         reader.close();
+        FileInputStream file1 = new FileInputStream(a1);
+        FileWriter file2 = new FileWriter(a2);
+
         StringBuffer sb = new StringBuffer();
         while (file1.available()>0){
             char b = (char) file1.read();

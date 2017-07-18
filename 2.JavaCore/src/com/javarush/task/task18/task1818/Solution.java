@@ -10,11 +10,15 @@ import java.util.ArrayList;
 public class Solution {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        FileOutputStream file1 = new FileOutputStream(reader.readLine());
-        FileInputStream file2 = new FileInputStream(reader.readLine());
-        FileInputStream file3 = new FileInputStream(reader.readLine());
+        String a1 =reader.readLine();
+        String a2 =reader.readLine();
+        String a3 =reader.readLine();
+        reader.close();
+        FileOutputStream file1 = new FileOutputStream(a1);
+        FileInputStream file2 = new FileInputStream(a2);
+        FileInputStream file3 = new FileInputStream(a3);
         ArrayList<Integer> array = new ArrayList<>();
-         reader.close();
+
         while (file2.available()>0){
             int a = file2.read();
             array.add(a);

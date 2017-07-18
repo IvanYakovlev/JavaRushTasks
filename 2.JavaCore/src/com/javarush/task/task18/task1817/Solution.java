@@ -12,7 +12,7 @@ public class Solution {
     public static void main(String[] args) throws IOException {
 
 
-        FileReader f = new FileReader("C:/1.txt");
+        FileReader f = new FileReader(args[0]);
 
         int count = 0,bs = 0;
         while (f.ready()) {
@@ -24,7 +24,7 @@ public class Solution {
         double a1=(double) count;
         double a2=(double) bs;
         f.close();
-        double b = a2/(a1-a2)*100;
+        double b = a2/a1*100;
 
         System.out.printf("%.2f", b);
 
