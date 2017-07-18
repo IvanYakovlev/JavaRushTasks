@@ -16,7 +16,7 @@ public class Solution {
         String str;
         while (!(str=reader.readLine()).isEmpty()){
             file1=new FileInputStream(str);
-            if (file1.available()>1000)
+            if (file1.available()<1000)
                 break;
         }
         throw new DownloadException();

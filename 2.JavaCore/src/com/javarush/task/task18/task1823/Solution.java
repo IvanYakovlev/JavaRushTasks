@@ -17,7 +17,7 @@ public class Solution {
         String a;
         while (!(a=reader.readLine()).equals("exit")) {
             ReadThread thread = new ReadThread(a);
-            thread.run();
+            thread.start();
         }
 
     }

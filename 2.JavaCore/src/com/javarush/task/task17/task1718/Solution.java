@@ -12,18 +12,19 @@ public class Solution {
         igor.start();
     }
 
-    public static class Person extends Thread { //Человек
+    public  static class Person extends Thread { //Человек
 
         public Person(String name) {
             super(name);
         }
 
         @Override
-        public void run() {
+         public void run() {
+            synchronized (Iron.class){
             Iron iron = takeIron();
             Clothes clothes = takeClothes();
             ironing(iron, clothes);
-            returnIron();
+            returnIron();}
         }
 
         protected synchronized Iron takeIron() {

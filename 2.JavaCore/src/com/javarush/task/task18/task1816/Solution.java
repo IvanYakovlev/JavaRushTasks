@@ -4,11 +4,11 @@ package com.javarush.task.task18.task1816;
 Английские буквы
 */
 
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
+
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
+
 
 public class Solution {
     public static void main(String[] args) throws IOException {

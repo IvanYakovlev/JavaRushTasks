@@ -14,9 +14,22 @@ public class Solution {
     }
 
     public static byte[] getNetAddress(byte[] ip, byte[] mask) {
-        return new byte[4];
+        byte[] res = new byte[4];
+
+        for (int i = 0; i < 4; i++) {
+            res[i] = (byte) (ip[i] & mask[i]);
+        }
+
+        return res;
+
     }
 
     public static void print(byte[] bytes) {
+        for (byte b : bytes) {
+            //Byte to binary format
+            System.out.print(Integer.toBinaryString((b & 0xFF) + 0x100).substring(1)+" ");
+        }
+        System.out.println();
+
     }
 }

@@ -33,12 +33,12 @@ public class QuestionFileOutputStream implements AmigoOutputStream {
 
     @Override
     public void close() throws IOException {
-        BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
+
         System.out.println("Вы действительно хотите закрыть поток? Д/Н");
+        BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
         if (reader.readLine().equals("Д"))
             component.close();
-        else if (reader.readLine().equals("Н"))
-        {}
+
 
     }
 }

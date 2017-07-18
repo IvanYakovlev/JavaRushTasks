@@ -26,7 +26,7 @@ public class AdapterFileOutputStream implements AmigoStringWriter {
 
     @Override
     public void writeString(String s) throws IOException {
-        fileOutputStream.write(Integer.parseInt(s));
+        fileOutputStream.write(s.getBytes());
     }
 
     @Override

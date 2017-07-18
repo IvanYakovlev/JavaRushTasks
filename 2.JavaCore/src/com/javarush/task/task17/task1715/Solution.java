@@ -28,6 +28,8 @@ public class Solution {
             while (!isStopped){
                 drugsController.buy(getRandomDrug(),getRandomCount());
                 waitAMoment();
+                waitAMoment();
+                waitAMoment();
             }
         }
 

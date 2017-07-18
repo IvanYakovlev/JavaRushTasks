@@ -9,41 +9,49 @@ import java.util.Map;
 
 public class Solution {
     public static Map<String, String> countries = new HashMap<String, String>();
-        static {
-            countries.put("UA", "Ukraine");
-            countries.put("RU", "Russia");
-            countries.put("CA", "Canada");
-        }
+    static {
+        countries.put("UA", "Ukraine");
+        countries.put("RU", "Russia");
+        countries.put("CA", "Canada");
+    }
+
     public static void main(String[] args) {
 
     }
 
-    public static class IncomeDataAdapter implements  Customer, Contact{
-        private IncomeData incomeData;
 
-        public IncomeDataAdapter(IncomeData incomeData) {
-            this.incomeData = incomeData;
-        }
+    public static class IncomeDataAdapter implements Customer, Contact {
+        private IncomeData data;
 
-        @Override
-        public String getCompanyName() {
-            return incomeData.getCompany();
-        }
-
-        @Override
-        public String getCountryName() {
-            return incomeData.getCountryCode();
+        public IncomeDataAdapter(IncomeData data) {
+            this.data = data;
         }
 
         @Override
         public String getName() {
-            return incomeData.getContactFirstName()+" "+incomeData.getContactLastName();
+            return data.getContactLastName() + ", " + data.getContactFirstName();
+        }
 
+        @Override
+        public String getCompanyName() {
+            return data.getCompany();
+        }
+
+        @Override
+        public String getCountryName() {
+            return countries.get(data.getCountryCode());
         }
 
         @Override
         public String getPhoneNumber() {
-            return incomeData.getCountryPhoneCode()+" "+ incomeData.getPhoneNumber();
+            String full = String.format("%010d", data.getPhoneNumber());
+            String telPart1 = "+" + data.getCountryPhoneCode();
+            String telPart2 = full.substring(0, 3);
+            String telPart3 = full.substring(3, 6);
+            String telPart4 = full.substring(6, 8);
+            String telPart5 = full.substring(8, 10);
+            String telFormated = String.format("%s(%s)%s-%s-%s", telPart1, telPart2, telPart3, telPart4, telPart5);
+            return telFormated;
         }
     }
 

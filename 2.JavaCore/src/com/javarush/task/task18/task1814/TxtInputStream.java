@@ -12,68 +12,54 @@ UnsupportedFileName
 
 public class TxtInputStream extends FileInputStream {
     FileInputStream component;
-    public static String fileName = "C:/1.rtf";
-    public TxtInputStream(FileInputStream component) throws FileNotFoundException{
+
+    public TxtInputStream(String fileName) throws UnsupportedFileNameException, IOException {
         super(fileName);
-        this.component=component;
+
+        if (fileName.endsWith(".txt"))
+            this.component = new FileInputStream(fileName);
+        else {
+            super.close();
+            throw new UnsupportedFileNameException();
+        }
     }
 
     @Override
     public int read() throws IOException {
-        return component.read();
+        return this.component.read();
     }
 
     @Override
     public int read(byte[] b) throws IOException {
-        return component.read(b);
+        return this.component.read(b);
     }
 
     @Override
     public int read(byte[] b, int off, int len) throws IOException {
-        return component.read(b, off, len);
+        return this.component.read(b, off, len);
     }
 
     @Override
     public long skip(long n) throws IOException {
-        return component.skip(n);
+        return this.component.skip(n);
     }
 
     @Override
     public int available() throws IOException {
-        return component.available();
+        return this.component.available();
     }
 
     @Override
     public void close() throws IOException {
-        component.close();
+        super.close();
+        this.component.close();
     }
 
     @Override
     public FileChannel getChannel() {
-        return component.getChannel();
+        return this.component.getChannel();
     }
 
-
-    @Override
-    public void mark(int readlimit) {
-        component.mark(readlimit);
-    }
-
-    @Override
-    public void reset() throws IOException {
-        component.reset();
-    }
-
-    @Override
-    public boolean markSupported() {
-        return component.markSupported();
-    }
-
-    public static void main(String[] args) throws UnsupportedFileNameException {
-        if (!fileName.endsWith(".txt"))
-            throw new UnsupportedFileNameException();
-
+    public static void main(String[] args) {
     }
 }
-
-

@@ -9,17 +9,19 @@ import java.lang.reflect.Field;
 
 public class Solution {
     public static void main(String[] args) throws IOException {
-        String a=null;
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        while (true){
+        BufferedReader conReader = new BufferedReader(new InputStreamReader(System.in));
+        FileInputStream file = null;
+
+        while (true) {
+            String fileName = conReader.readLine();
             try {
-                a = reader.readLine();
-                FileReader reader1 = new FileReader(a);
+                file = new FileInputStream(fileName);
+                file.close();
             } catch (FileNotFoundException e) {
-                reader.close();
-               break;
+                System.out.println(fileName);
+                conReader.close();
+                return;
             }
         }
-        System.out.print(a);
     }
 }

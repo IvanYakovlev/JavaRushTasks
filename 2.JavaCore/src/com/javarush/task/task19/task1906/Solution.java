@@ -17,7 +17,7 @@ public class Solution {
         i++;
         int data = file1.read();
         if (i%2==0){
-            file2.write(file1.read());
+            file2.write(data);
         }
     }
     file1.close();

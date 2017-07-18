@@ -23,6 +23,8 @@ public class Solution {
         }
         reader.close();
         inputStream.close();
-        System.out.println(array);
+        for (int a:array){
+            System.out.print(" "+a);
+        }
     }
 }

@@ -12,9 +12,8 @@ public class Solution {
         for (long i=1;i<N;i++){
             long value=0;
             String[] a = String.valueOf(i).split("");
-            double st= (double) a.length;
-         for (int j=0;j<a.length;j++){
-             long firstslog =(long) Math.pow(Double.parseDouble(a[j]), st);
+            for (int j=0;j<a.length;j++){
+             long firstslog =(long) Math.pow(Double.parseDouble(a[j]), a.length);
              value=value+firstslog;
             }
             if (value==i){
@@ -32,7 +31,11 @@ public class Solution {
 
     public static void main(String[] args) {
         Long t0 = System.currentTimeMillis();
+<<<<<<< HEAD
         long n = 2989; //1.978
+=======
+        long n = 99999;
+>>>>>>> 5f26a57f72f9d0141be0278d4db7a89ea3934de6
         long[] lst = getNumbers(n);
         Long t1 = System.currentTimeMillis();
         System.out.println("time: " + (t1 - t0) / 1000d + " sec");

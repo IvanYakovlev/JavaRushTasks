@@ -1,14 +1,11 @@
 package com.javarush.task.task17.task1721;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-/* 
+/*
 Транзакционность
 */
 
@@ -16,43 +13,53 @@ public class Solution {
     public static List<String> allLines = new ArrayList<String>();
     public static List<String> forRemoveLines = new ArrayList<String>();
 
-    public static void main(String[] args) throws IOException {
-      joinData();
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String fileName1 = sc.nextLine();
+        String fileName2 = sc.nextLine();
+//        String fileName1 = "d:\\3.txt";
+//        String fileName2 = "d:\\4.txt";
 
+        try {
+            BufferedReader file1 = new BufferedReader(new InputStreamReader(new FileInputStream(fileName1)));
 
-    }
-
-    public static void joinData() throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        Scanner name1 = new Scanner(new FileInputStream(reader.readLine()));
-        Scanner name2 = new Scanner(new FileInputStream(reader.readLine()));
-        reader.close();
-        while (name1.hasNext()) {
-            allLines.add(name1.nextLine());
-        }
-        while (name2.hasNext()){
-            forRemoveLines.add(name2.nextLine());
-        }
-        name1.close();
-        name2.close();
-        int count=0;
-        for (String a : forRemoveLines)
-            for (String b : allLines) {
-                if (a.equals(b)){
-                    count++;
-                }
-            }
-            if (count==forRemoveLines.size()){
-                for (int i=0;i<forRemoveLines.size();i++) {
-                    allLines.remove(0);
-                }
-            } else {
-                for (int i=0;i<allLines.size();i++){
-                    allLines.set(i,"");
-                    throw new CorruptedDataException();
-                }
+            while (file1.ready()) {
+                allLines.add(file1.readLine());
             }
 
+        } catch (FileNotFoundException e) {
+            System.out.println("File " + fileName1 + " not found");
+        } catch (IOException e) {
+            System.out.println("Can't Read File " + fileName1);
+        }
+
+        try {
+            BufferedReader file2 = new BufferedReader(new InputStreamReader(new FileInputStream(fileName2)));
+
+            while (file2.ready()) {
+                forRemoveLines.add(file2.readLine());
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File " + fileName2 + " not found");
+        } catch (IOException e) {
+            System.out.println("Can't Read File " + fileName2);
+        }
+
+        try {
+            new Solution().joinData();
+        } catch (CorruptedDataException e) {
+            System.out.println("Что-то");
         }
     }
 
+    public void joinData() throws CorruptedDataException {
+        if (allLines.containsAll(forRemoveLines)) {
+            allLines.removeAll(forRemoveLines);
+            return;
+        } else {
+            allLines.clear();
+            throw new CorruptedDataException();
+        }
+    }
+}
