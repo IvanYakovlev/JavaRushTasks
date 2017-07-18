@@ -32,11 +32,7 @@ public class Solution {
 
     public static void main(String[] args) {
         Long t0 = System.currentTimeMillis();
-        //int n = 99999999   //1.204
-        //int n = 146511208;
-        long n = 99999; //1.978
-        //int n = 99999; //9.62
-        //int n = 2147483647;//22.338 - 24.887
+        long n = 2989; //1.978
         long[] lst = getNumbers(n);
         Long t1 = System.currentTimeMillis();
         System.out.println("time: " + (t1 - t0) / 1000d + " sec");
