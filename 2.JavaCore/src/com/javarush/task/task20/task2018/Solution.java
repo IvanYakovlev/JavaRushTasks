@@ -32,6 +32,7 @@ public class Solution {
 
         public void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
             in.defaultReadObject();
+            name=(String)in.readObject();
         }
     }
 

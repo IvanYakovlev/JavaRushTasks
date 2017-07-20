@@ -21,22 +21,25 @@ public class Solution {
     }
 
     public static void main(String[] args) throws IOException {
-        BufferedReader reader1 = new BufferedReader(new InputStreamReader(System.in));
-        BufferedReader reader = new BufferedReader(new FileReader(reader1.readLine()));
-        reader1.close();
-        while (reader.ready()){
-            String read=reader.readLine();
-            String[] a =read.split("[\\p{P}\\s\\t\\n\\r]");
-            int count=0;
-           for (String line : a) {
-               for (String word : words) {
-                   if (line.trim().equals(word)) ;
-                   count+=1;
-               }
+        BufferedReader conReader = new BufferedReader(new InputStreamReader(System.in));
+        String fileName = conReader.readLine();
+        //String fileName = "e:\\11.txt";
+        conReader.close();
 
-           }
-            if (count==2) System.out.println(read);
+        BufferedReader fileReader = new BufferedReader(new FileReader(fileName));
+        while (fileReader.ready()) {
+            String line = fileReader.readLine();
+            String[] lineWords = line.split("[\\p{P}\\s\\t\\n\\r]");
+            int count = 0;
+            for (String lineWord : lineWords) {
+                for (String word : words) {
+                    if (lineWord.trim().equals(word))
+                        count += 1;
+                }
+            }
+            if (count == 2)
+                System.out.println(line);
         }
-        reader.close();
+        fileReader.close();
     }
 }

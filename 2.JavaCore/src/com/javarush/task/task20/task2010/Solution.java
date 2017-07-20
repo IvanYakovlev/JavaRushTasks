@@ -13,7 +13,7 @@ public class Solution {
 
     public static int countStrings;
 
-    public static class String {
+    public static class String implements Serializable{
         private final int number;
 
         public String() {

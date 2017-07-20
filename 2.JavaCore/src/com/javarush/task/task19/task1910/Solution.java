@@ -16,7 +16,7 @@ public class Solution {
         while (file.ready()){
 
         String s = file.readLine();
-        String[] arr= (s).split("[\\s,.?:;!]+");
+        String[] arr= (s).split("\\p{P}");
             for (String l:arr){
             file2.write(l);
             }

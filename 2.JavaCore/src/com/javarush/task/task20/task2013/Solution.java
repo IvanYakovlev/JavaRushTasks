@@ -32,6 +32,8 @@ public class Solution {
             this.lastName = lastName;
             this.age = age;
         }
+        public Person()
+        {}
 
 
 

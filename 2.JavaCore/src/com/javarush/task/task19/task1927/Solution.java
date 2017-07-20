@@ -5,6 +5,7 @@ package com.javarush.task.task19.task1927;
 */
 
 import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
@@ -12,39 +13,17 @@ public class Solution {
     public static TestString testString = new TestString();
 
     public static void main(String[] args) {
-        //запоминаем настоящий PrintStream в специальную переменную
         PrintStream consoleStream = System.out;
 
-        //Создаем динамический массив
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        //создаем адаптер к классу PrintStream
-        PrintStream stream = new PrintStream(outputStream);
-        //Устанавливаем его как текущий System.out
+        PrintStream stream = new MyStream(new PrintStream(outputStream));//создаем Декоратор
         System.setOut(stream);
 
-        //Вызываем функцию, которая ничего не знает о наших манипуляциях
-        TestString test= new TestString();
-        test.printSomething();
+        testString.printSomething();
+        System.setOut(consoleStream); //Возвращаем как было
 
-        //Преобразовываем записанные в наш ByteArray данные в строку
-        String result = outputStream.toString();
+        System.out.println(outputStream.toString());
 
-        //Возвращаем все как было
-        System.setOut(consoleStream);
-
-        //Добавляем рекламу
-        ArrayList<String> str=new ArrayList<>();
-        String[] str2 =result.split("\\r\\n");
-        for (int i =0; i<str2.length;i++){
-            if ((i+1)%2==0) {
-                str.add(str2[i]);
-                str.add("JavaRush - курсы Java онлайн");
-            } else
-            str.add(str2[i]);
-        }
-        //выводим ее в консоль
-        for (String S:str){
-        System.out.println(S);}
     }
 
     public static class TestString {
@@ -54,6 +33,34 @@ public class Solution {
             System.out.println("third");
             System.out.println("fourth");
             System.out.println("fifth");
+        }
+    }
+
+    //Все остальные методы, кроме переопределенных будут работать, как и в обычном PrintStream
+    public static class MyStream extends PrintStream {
+        private static int count = 0;
+        private String adv = "\r\nJavaRush - курсы Java онлайн";
+
+        private PrintStream printStream;
+
+        MyStream (PrintStream printStream) {
+            super(printStream);
+            this.printStream = printStream;
+        }
+
+        @Override
+        public void print(String s) {
+            if (MyStream.count == 1) {
+                printStream.print(s+adv);
+                MyStream.count = 0;
+            } else {
+                printStream.print(s);
+                MyStream.count++;
+            }
+        }
+
+        public MyStream(OutputStream out) {
+            super(out);
         }
     }
 }

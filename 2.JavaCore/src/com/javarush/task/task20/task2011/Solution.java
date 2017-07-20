@@ -40,8 +40,8 @@ public class Solution {
 
         @Override
         public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-            in.readObject();
-            in.readInt();
+            address = (String)in.readObject();
+            year = in.readInt();
         }
     }
 

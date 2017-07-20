@@ -2,16 +2,10 @@ package com.javarush.task.task19.task1921;
 
 import org.omg.PortableInterceptor.INACTIVE;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
+import java.util.*;
 
 /* 
 Хуан Хуанович
@@ -20,27 +14,50 @@ import java.util.List;
 public class Solution {
     public static final List<Person> PEOPLE = new ArrayList<Person>();
 
-    public static void main(String[] args) throws IOException, ParseException {
-        BufferedReader reader = new BufferedReader(new FileReader("C:/1.txt"));
-        while (reader.ready()){
-            int year;
-            int month;
-            int day;
-            String name = "";
-            String[] a = reader.readLine().split(" ");
-            year= Integer.parseInt(a[a.length-1]);
-            month= Integer.parseInt(a[a.length-2]);
-            day= Integer.parseInt(a[a.length-3]);
-            Date date1 = new GregorianCalendar(year, month-1, day).getTime();
-            for (int i=0;i<a.length-3;i++){
-                if (i==a.length-4){name=name+a[i];}else {name=name+a[i]+" ";}
-            }
-            PEOPLE.add(new Person(name, date1));
+    public static void main(String[] args) {
+        String filename = args[0];
 
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
+            while (bufferedReader.ready()){
+                String name = "";
+                int year = 0;
+                int month = 0;
+                int day = 0;
+                String[] dannie = bufferedReader.readLine().split(" ");
+                if (dannie.length==4){
+                    name = dannie[0];
+                    day = Integer.parseInt(dannie[1]);
+                    month = Integer.parseInt(dannie[2]);
+                    year = Integer.parseInt(dannie[3]);
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MM yyyy", Locale.ENGLISH);
+                    Date date = simpleDateFormat.parse(day+" "+month+" "+year);
+                    PEOPLE.add(new Person(name, date));
+                }else if (dannie.length==5){
+                    name = dannie[0]+" "+dannie[1];
+                    day = Integer.parseInt(dannie[2]);
+                    month = Integer.parseInt(dannie[3]);
+                    year = Integer.parseInt(dannie[4]);
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MM yyyy", Locale.ENGLISH);
+                    Date date = simpleDateFormat.parse(day+" "+month+" "+year);
+                    PEOPLE.add(new Person(name, date));
+                }else if (dannie.length==6){
+                    name = dannie[0]+" "+dannie[1]+" "+dannie[2];
+                    day = Integer.parseInt(dannie[3]);
+                    month = Integer.parseInt(dannie[4]);
+                    year = Integer.parseInt(dannie[5]);
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MM yyyy", Locale.ENGLISH);
+                    Date date = simpleDateFormat.parse(dannie[dannie.length-3] +" " +dannie[dannie.length-2]+" "+ dannie[dannie.length-1]);
+                    PEOPLE.add(new Person(name, date));
+                }
+            }
+            bufferedReader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
-        reader.close();
-        for (Person p :PEOPLE)
-            System.out.println(p.getName()+" "+p.getBirthday());
     }
 }
-

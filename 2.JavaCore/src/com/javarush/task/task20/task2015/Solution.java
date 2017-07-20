@@ -40,7 +40,7 @@ public class Solution implements Serializable,Runnable{
 
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
-        Thread thread = new Thread();
+        Thread thread = new Thread(this);
         thread.start();
     }
 

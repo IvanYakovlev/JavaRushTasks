@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /* 
 Отслеживаем изменения
@@ -14,39 +15,36 @@ import java.util.List;
 public class Solution {
     public static List<LineItem> lines = new ArrayList<LineItem>();
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        BufferedReader reader1 = new BufferedReader(new FileReader(reader.readLine()));
-        BufferedReader reader2 = new BufferedReader(new FileReader(reader.readLine()));
-//        Сделать ввод с консоли
-        collate(reader1, reader2);
-        reader.close();
-        reader1.close();
-        reader2.close();
-    }
+    public static void main(String[] args) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+             FileReader fileReader1 = new FileReader(reader.readLine());
+             FileReader fileReader2 = new FileReader(reader.readLine())) {
 
-    private static void collate(BufferedReader reader1, BufferedReader reader2) throws IOException {
-        ArrayList<String> list1 = new ArrayList<>();
-        ArrayList<String> list2 = new ArrayList<>();
-        while (reader1.ready()) {list1.add(reader1.readLine());}
-        while (reader2.ready()) {list2.add(reader2.readLine());}
-        for (int i = 0; i < list1.size(); i++){
-            if (list1.get(i).equals(list2.get(i))){
-                lines.add(new LineItem(Type.SAME, list1.get(i)));
-                list2.set(i, null);
-            } else if (!list1.get(i).equals(list2.get(i)) && list1.get(i).equals(list2.get(i + 1))) {
-                lines.add(new LineItem(Type.ADDED, list2.get(i)));
-                list2.remove(i);
-            } else if (!list1.get(i).equals(list2.get(i)) && !list1.get(i).equals(list2.get(i + 1))) {
-                lines.add(new LineItem(Type.REMOVED, list1.get(i)));
-                list2.add(0 , null);
+            List<String> original = new BufferedReader(fileReader1).lines().collect(Collectors.toList());
+            List<String> modified = new BufferedReader(fileReader2).lines().collect(Collectors.toList());
+
+            while (original.size() != 0 & modified.size() != 0) {
+                if (original.get(0).equals(modified.get(0))) {
+                    lines.add(new LineItem(Type.SAME, original.remove(0)));
+                    modified.remove(0);
+                } else if (modified.size() != 1 && original.get(0).equals(modified.get(1))) {
+                    lines.add(new LineItem(Type.ADDED, modified.remove(0)));
+                } else if (original.size() != 1 && original.get(1).equals(modified.get(0))) {
+                    lines.add(new LineItem(Type.REMOVED, original.remove(0)));
+                }
             }
-        }
-//        for (LineItem li: lines) {
-//            System.out.println(li.type + " " + li.line);
-//        }
-    }
 
+            if (original.size() != 0) {
+                lines.add(new LineItem(Type.REMOVED, original.remove(0)));
+            } else if (modified.size() != 0) {
+                lines.add(new LineItem(Type.ADDED, modified.remove(0)));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        lines.forEach(System.out::println);
+    }
 
     public static enum Type {
         ADDED,        //добавлена новая строка
@@ -61,6 +59,14 @@ public class Solution {
         public LineItem(Type type, String line) {
             this.type = type;
             this.line = line;
+        }
+
+        @Override
+        public String toString() {
+            return "LineItem{" +
+                    "type=" + type +
+                    ", line='" + line + '\'' +
+                    '}';
         }
     }
 }
