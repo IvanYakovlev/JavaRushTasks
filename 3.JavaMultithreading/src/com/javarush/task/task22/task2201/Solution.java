@@ -32,6 +32,9 @@ public class Solution {
     }
 
     public synchronized String getPartOfString(String string, String threadName) {
+        int first=string.indexOf("\t");
+        int last=string.lastIndexOf("\t");
+
         return null;
     }
 }
