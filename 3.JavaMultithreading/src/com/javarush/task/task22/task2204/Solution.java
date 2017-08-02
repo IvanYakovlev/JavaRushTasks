@@ -13,6 +13,7 @@ public class Solution {
 
     public static String getFormattedString() {
 
-        return String.format("20 / 7 = % %Exp = %",);
+
+        return "20 / 7 = %.2f%nExp = %.2e";
     }
 }
