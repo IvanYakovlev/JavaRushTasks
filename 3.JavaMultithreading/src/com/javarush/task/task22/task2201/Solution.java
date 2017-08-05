@@ -31,7 +31,23 @@ public class Solution {
         this.thread3.start();
     }
 
+<<<<<<< HEAD
     public synchronized String getPartOfString(String string, String threadName) {
         return null;
     }
 }
+=======
+    public synchronized String getPartOfString(String string, String threadName) throws TooShortStringFirstThreadException {
+        if (string == null) throw new RuntimeException();
+        String result;
+        try {
+            result = string.substring(string.indexOf("\t") + 1, string.lastIndexOf("\t"));
+        }catch (StringIndexOutOfBoundsException e) {
+            if (threadName.equals(FIRST_THREAD_NAME)) throw new TooShortStringFirstThreadException(e);
+            if (threadName.equals(SECOND_THREAD_NAME)) throw new TooShortStringSecondThreadException(e);
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
+}
+>>>>>>> bc304386898bbc171ea77860b4b06d7299ec826e
