@@ -41,10 +41,32 @@ public class Snake {
     public int getY(){
         return sections.get(0).getY();
         }
-        public void move(){}
     public SnakeDirection getDirection() {
         return direction;
     }
+        public void move(){
+            if (isAlive){
+                if (direction==SnakeDirection.UP){
+                    move(0,-1);
+                } else if (direction==SnakeDirection.RIGHT){
+                    move(1,0);
+                } else if (direction==SnakeDirection.DOWN){
+                    move(0,1);
+                } else if (direction==SnakeDirection.LEFT){
+                    move(-1,0);
+                }
+            }
+        }
+      /*  В методе move без параметров необходимо:
+        а) прекратить движение если змея умерла(isAlive == false)
+        б) вызвать метод move(0, -1) если направление движения равно SnakeDirection.UP
+        в) вызвать метод move(1, 0) если направление движения равно SnakeDirection.RIGHT
+        г) вызвать метод move(0, 1) если направление движения равно SnakeDirection.DOWN
+        д) вызвать метод move(-1, 0) если направление движения равно SnakeDirection.LEFT*/
+    public void move(int a, int b){
+
+    }
+
 
 
 

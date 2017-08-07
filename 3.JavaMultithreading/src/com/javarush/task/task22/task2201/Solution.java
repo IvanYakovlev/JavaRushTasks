@@ -1,8 +1,11 @@
+/*
 package com.javarush.task.task22.task2201;
 
-/* 
-Строки нитей или строковые нити? Вот в чем вопрос
 */
+/*
+Строки нитей или строковые нити? Вот в чем вопрос
+*//*
+
 public class Solution {
     public static void main(String[] args) {
         new Solution();
@@ -51,3 +54,4 @@ public class Solution {
     }
 }
 >>>>>>> bc304386898bbc171ea77860b4b06d7299ec826e
+*/

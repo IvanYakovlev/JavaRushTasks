@@ -1,3 +1,4 @@
+/*
 package com.javarush.task.task22.task2201;
 
 public class TooShortStringFirstThreadException extends RuntimeException {
@@ -9,3 +10,4 @@ public class TooShortStringFirstThreadException extends RuntimeException {
     }
 }
 >>>>>>> bc304386898bbc171ea77860b4b06d7299ec826e
+*/

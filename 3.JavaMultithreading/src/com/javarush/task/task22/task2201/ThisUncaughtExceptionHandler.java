@@ -1,3 +1,4 @@
+/*
 package com.javarush.task.task22.task2201;
 
 <<<<<<< HEAD
@@ -54,3 +55,4 @@ public class ThisUncaughtExceptionHandler implements Thread.UncaughtExceptionHan
     }
 }
 >>>>>>> bc304386898bbc171ea77860b4b06d7299ec826e
+*/
