@@ -1,3 +1,4 @@
+/*
 package com.javarush.task.task22.task2201;
 
 public class Task implements Runnable {
@@ -18,3 +19,4 @@ public class Task implements Runnable {
         } while ((str = solution.getPartOfString(str, name)) != null || !str.isEmpty());
     }
 }
+*/
