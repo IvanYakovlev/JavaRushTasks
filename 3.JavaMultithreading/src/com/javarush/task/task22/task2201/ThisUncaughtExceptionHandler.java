@@ -1,7 +1,11 @@
+/*
 package com.javarush.task.task22.task2201;
 
+<<<<<<< HEAD
+=======
 import com.javarush.task.task22.task2201.Solution;
 
+>>>>>>> bc304386898bbc171ea77860b4b06d7299ec826e
 public class ThisUncaughtExceptionHandler implements Thread.UncaughtExceptionHandler {
     @Override
     public void uncaughtException(Thread t, Throwable e) {
@@ -9,6 +13,28 @@ public class ThisUncaughtExceptionHandler implements Thread.UncaughtExceptionHan
         if (Solution.FIRST_THREAD_NAME.equals(t.getName())) {
             System.out.println(getFormattedStringForFirstThread(t, e, string));
         } else
+<<<<<<< HEAD
+            if (Solution.SECOND_THREAD_NAME.equals(t.getName())) {
+                System.out.println(getFormattedStringForSecondThread(t, e, string));
+            } else {
+                System.out.println(getFormattedStringForOtherThread(t, e, string));
+            }
+    }
+
+    protected String getFormattedStringForOtherThread(Thread t, Throwable e, String string) {
+        return null;
+    }
+
+    protected String getFormattedStringForSecondThread(Thread t, Throwable e, String string) {
+        return null;
+    }
+
+    protected String getFormattedStringForFirstThread(Thread t, Throwable e, String string) {
+        return null;
+    }
+}
+
+=======
         if (Solution.SECOND_THREAD_NAME.equals(t.getName())) {
             System.out.println(getFormattedStringForSecondThread(t, e, string));
         } else {
@@ -28,3 +54,5 @@ public class ThisUncaughtExceptionHandler implements Thread.UncaughtExceptionHan
         return String.format(string,t.getName(), e.getClass().getSimpleName(), e.getCause());
     }
 }
+>>>>>>> bc304386898bbc171ea77860b4b06d7299ec826e
+*/

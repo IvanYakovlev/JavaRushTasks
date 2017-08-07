@@ -1,8 +1,11 @@
+/*
 package com.javarush.task.task22.task2201;
 
-/* 
-Строки нитей или строковые нити? Вот в чем вопрос
 */
+/*
+Строки нитей или строковые нити? Вот в чем вопрос
+*//*
+
 public class Solution {
     public static void main(String[] args) {
         new Solution();
@@ -31,6 +34,12 @@ public class Solution {
         this.thread3.start();
     }
 
+<<<<<<< HEAD
+    public synchronized String getPartOfString(String string, String threadName) {
+        return null;
+    }
+}
+=======
     public synchronized String getPartOfString(String string, String threadName) throws TooShortStringFirstThreadException {
         if (string == null) throw new RuntimeException();
         String result;
@@ -44,3 +53,5 @@ public class Solution {
         return result;
     }
 }
+>>>>>>> bc304386898bbc171ea77860b4b06d7299ec826e
+*/
