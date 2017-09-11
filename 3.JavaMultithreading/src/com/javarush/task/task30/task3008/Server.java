@@ -48,7 +48,30 @@ public class Server {
                 }
             }
         }
+        @Override
+        public void run() {
 
+            if (socket != null && socket.getRemoteSocketAddress() != null) {
+                ConsoleHelper.writeMessage("Established a new connection to a remote socket address: " + socket.getRemoteSocketAddress());
+            }
+            String userName = null;
+
+            try (Connection connection = new Connection(socket)) {
+
+                userName = serverHandshake(connection);
+                sendBroadcastMessage(new Message(MessageType.USER_ADDED, userName));
+                sendListOfUsers(connection, userName);
+                serverMainLoop(connection, userName);
+            } catch (IOException | ClassNotFoundException e) {
+                ConsoleHelper.writeMessage("An exchange of data error to a remote socket address");
+            } finally {
+                if (userName != null) {
+                    connectionMap.remove(userName);
+                    sendBroadcastMessage(new Message(MessageType.USER_REMOVED, userName));
+                }
+                ConsoleHelper.writeMessage("Closed connection to a remote socket address: "); // + socketAddress);
+            }
+        }
     }
     private static Map<String, Connection> connectionMap = new ConcurrentHashMap<>();
     public static void sendBroadcastMessage(Message message){
@@ -60,6 +83,7 @@ public class Server {
             }
         }
     }
+
 
     public static void main(String[] args) {
         ConsoleHelper.writeMessage("Input server port: ");
