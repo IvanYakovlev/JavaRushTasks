@@ -8,6 +8,7 @@ import com.javarush.task.task30.task3008.MessageType;
 import java.io.IOException;
 import java.net.Socket;
 
+
 public class Client extends Thread {
     protected Connection connection;
     private volatile boolean clientConnected = false;

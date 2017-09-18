@@ -4,6 +4,9 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Created by Rumata on 01.03.2017.
+ */
 public class ClientGuiModel {
     private final Set<String> allUserNames = new HashSet<String>();
     private String newMessage;

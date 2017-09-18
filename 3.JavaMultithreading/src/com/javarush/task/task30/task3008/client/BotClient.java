@@ -1,10 +1,12 @@
 package com.javarush.task.task30.task3008.client;
 
+
 import com.javarush.task.task30.task3008.ConsoleHelper;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
 
 public class BotClient extends Client {
 
@@ -82,3 +84,4 @@ public class BotClient extends Client {
         }
     }
 }
+

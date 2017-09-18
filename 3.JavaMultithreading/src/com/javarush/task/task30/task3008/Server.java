@@ -6,12 +6,53 @@ import java.net.Socket;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+
 public class Server {
-    private static class Handler extends Thread{
-            private Socket socket;
-        public Handler (Socket socket){
-                this.socket=socket;
+    private static Map<String, Connection> connectionMap = new ConcurrentHashMap<>();
+
+    public static void main(String[] args) {
+        ConsoleHelper.writeMessage("Input server port: ");
+        try (ServerSocket serverSocket = new ServerSocket(ConsoleHelper.readInt())) {
+            ConsoleHelper.writeMessage("Server started...");
+            while (true) {
+                new Handler(serverSocket.accept()).start();
             }
+        } catch (Exception e) {
+            ConsoleHelper.writeMessage("Something wrong, Server socket closed.");
+        }
+    }
+
+    private static class Handler extends Thread {
+        private Socket socket;
+
+        public Handler(Socket socket) {
+            this.socket = socket;
+        }
+
+        @Override
+        public void run() {
+
+            if (socket != null && socket.getRemoteSocketAddress() != null) {
+                ConsoleHelper.writeMessage("Established a new connection to a remote socket address: " + socket.getRemoteSocketAddress());
+            }
+            String userName = null;
+
+            try (Connection connection = new Connection(socket)) {
+
+                userName = serverHandshake(connection);
+                sendBroadcastMessage(new Message(MessageType.USER_ADDED, userName));
+                sendListOfUsers(connection, userName);
+                serverMainLoop(connection, userName);
+            } catch (IOException | ClassNotFoundException e) {
+                ConsoleHelper.writeMessage("An exchange of data error to a remote socket address");
+            } finally {
+                if (userName != null) {
+                    connectionMap.remove(userName);
+                    sendBroadcastMessage(new Message(MessageType.USER_REMOVED, userName));
+                }
+                ConsoleHelper.writeMessage("Closed connection to a remote socket address: "); // + socketAddress);
+            }
+        }
 
         private String serverHandshake(Connection connection) throws IOException, ClassNotFoundException {
             while (true) {
@@ -38,6 +79,7 @@ public class Server {
                 }
             }
         }
+
         private void serverMainLoop(Connection connection, String userName) throws IOException, ClassNotFoundException {
             while (true) {
                 Message message = connection.receive();
@@ -48,52 +90,16 @@ public class Server {
                 }
             }
         }
-        @Override
-        public void run() {
 
-            if (socket != null && socket.getRemoteSocketAddress() != null) {
-                ConsoleHelper.writeMessage("Established a new connection to a remote socket address: " + socket.getRemoteSocketAddress());
-            }
-            String userName = null;
-
-            try (Connection connection = new Connection(socket)) {
-
-                userName = serverHandshake(connection);
-                sendBroadcastMessage(new Message(MessageType.USER_ADDED, userName));
-                sendListOfUsers(connection, userName);
-                serverMainLoop(connection, userName);
-            } catch (IOException | ClassNotFoundException e) {
-                ConsoleHelper.writeMessage("An exchange of data error to a remote socket address");
-            } finally {
-                if (userName != null) {
-                    connectionMap.remove(userName);
-                    sendBroadcastMessage(new Message(MessageType.USER_REMOVED, userName));
-                }
-                ConsoleHelper.writeMessage("Closed connection to a remote socket address: "); // + socketAddress);
-            }
-        }
     }
-    private static Map<String, Connection> connectionMap = new ConcurrentHashMap<>();
-    public static void sendBroadcastMessage(Message message){
+
+    public static void sendBroadcastMessage(Message message) {
         for (Connection connection : connectionMap.values()) {
             try {
                 connection.send(message);
             } catch (IOException e) {
                 ConsoleHelper.writeMessage("Error sending message");
             }
-        }
-    }
-
-
-    public static void main(String[] args) {
-        ConsoleHelper.writeMessage("Input server port: ");
-        try (ServerSocket serverSocket = new ServerSocket(ConsoleHelper.readInt())) {
-            ConsoleHelper.writeMessage("Server started...");
-            while (true) {
-                new Handler(serverSocket.accept()).start();
-            }
-        } catch (Exception e) {
-            ConsoleHelper.writeMessage("Something wrong, Server socket closed.");
         }
     }
 }

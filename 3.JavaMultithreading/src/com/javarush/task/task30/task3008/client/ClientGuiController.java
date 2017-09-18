@@ -1,8 +1,18 @@
 package com.javarush.task.task30.task3008.client;
 
-public class ClientGuiController extends Client {
+
+
+/**
+ * Created by Rumata on 01.03.2017.
+ */
+public class ClientGuiController  extends Client {
+
     private ClientGuiModel model = new ClientGuiModel();
     private ClientGuiView view = new ClientGuiView(this);
+
+    public static void main(String[] args) {
+        new ClientGuiController().run();
+    }
 
     @Override
     protected SocketThread getSocketThread() {
@@ -11,8 +21,7 @@ public class ClientGuiController extends Client {
 
     @Override
     public void run() {
-        SocketThread socketThread = getSocketThread();
-        socketThread.run();
+        getSocketThread().run();
     }
 
     @Override
@@ -34,7 +43,10 @@ public class ClientGuiController extends Client {
         return model;
     }
 
-    public class GuiSocketThread extends SocketThread {
+
+
+    public class GuiSocketThread extends SocketThread
+    {
         @Override
         protected void processIncomingMessage(String message) {
             model.setNewMessage(message);
@@ -57,9 +69,7 @@ public class ClientGuiController extends Client {
         protected void notifyConnectionStatusChanged(boolean clientConnected) {
             view.notifyConnectionStatusChanged(clientConnected);
         }
-    }
 
-    public static void main(String[] args) {
-        new ClientGuiController().run();
+
     }
 }
