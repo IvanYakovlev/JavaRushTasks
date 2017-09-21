@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 
-/* 
+/*
 Конвертация из одного класса в другой используя JSON
 
 НЕОБХОДИМО: подключенные библиотеки Jackson Core, Bind и Annotation версии 2.6.1

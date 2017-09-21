@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlType;
 import java.io.IOException;
 import java.io.StringWriter;
 
-/* 
+/*
 Первая сериализация в XML
 
 Расставь правильно JAXB аннотации у статических классов.

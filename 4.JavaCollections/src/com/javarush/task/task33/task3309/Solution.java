@@ -64,15 +64,6 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-//        String s = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><first><second>some string</second><second>some string</second><second><![CDATA[need CDATA because of < and >]]></second><second/></first>";
-//
-//        String comment = "it's a comment";
-//        String tagName = "second";
-//
-//        String res = null;
-//        if (s.indexOf(tagName) > -1)
-//            res = s.replace("<" + tagName + ">", "<!--" + comment + "-->" + "<" + tagName + ">");
-//
-//        System.out.println(res);
+
     }
 }

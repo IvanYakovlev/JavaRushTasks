@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlType;
 import java.io.IOException;
 import java.io.StringReader;
 
-/* 
+/*
 Десериализация XML объекта
 
 В метод convertFromXmlToNormal первым параметром приходит строка, содержащая xml объект.
