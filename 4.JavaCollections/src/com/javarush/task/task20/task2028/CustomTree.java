@@ -29,18 +29,43 @@ http://info.javarush.ru/uploads/images/00/04/89/2014/03/21/ee9a9b.jpg
  (для случаев где N > 2 и является степенью двойки), N - размер дерева до удаления.
 4. Метод getParent должен возвращать имя родителя для любого элемента дерева.
 */
-public class CustomTree extends AbstractList implements Cloneable, Serializable {
+public class CustomTree extends AbstractList<String> implements Cloneable, Serializable {
     Entry<String> root;
-
     public static void main(String[] args) {
         List<String> list = new CustomTree();
         for (int i = 1; i < 16; i++) {
             list.add(String.valueOf(i));
         }
-        //System.out.println("Expected 3, actual is " + ((CustomTree) list).getParent("8"));
+        System.out.println("Expected 3, actual is " + ((CustomTree) list).getParent("8"));
         list.remove("5");
-        //System.out.println("Expected null, actual is " + ((CustomTree) list).getParent("11"));
+        System.out.println("Expected null, actual is " + ((CustomTree) list).getParent("11"));
     }
+
+
+    public boolean add(String s) {
+        if (this.isEmpty()) {
+            root = new Entry<>(s);
+            root.checkChildren();
+            return true;
+        } else {
+            Entry<String> entry = root;
+            entry.checkChildren();
+            if (entry.isAvailableToAddChildren()) {
+
+            }
+        }
+
+
+        return false;
+    }
+
+    public void remove(String s) {
+
+    }
+    public String getParent(String s) {
+        return  null;
+    }
+
 
     static class Entry<T> implements Serializable {
         String elementName;
@@ -50,19 +75,21 @@ public class CustomTree extends AbstractList implements Cloneable, Serializable 
 
         public Entry(String elementName) {
             this.elementName = elementName;
-            availableToAddLeftChildren = true;
-            availableToAddRightChildren = true;
+            this.availableToAddLeftChildren = true;
+            this.availableToAddRightChildren = true;
         }
 
-        void checkChildren() {
-            if (leftChild != null)
+        public void checkChildren() {
+            if (leftChild != null) {
                 availableToAddLeftChildren = false;
-            if (rightChild != null)
+            }
+            if (rightChild != null) {
                 availableToAddRightChildren = false;
+            }
         }
 
-        boolean isAvailableToAddChildren() {
-            return availableToAddLeftChildren || availableToAddRightChildren;
+        public boolean isAvailableToAddChildren() {
+            return availableToAddLeftChildren | availableToAddRightChildren;
         }
     }
 
@@ -71,39 +98,38 @@ public class CustomTree extends AbstractList implements Cloneable, Serializable 
         return 0;
     }
 
-
+    @Override
     public String get(int index) {
         throw new UnsupportedOperationException();
-        //return null;
     }
 
+    @Override
     public String set(int index, String element) {
         throw new UnsupportedOperationException();
     }
 
+    @Override
     public void add(int index, String element) {
         throw new UnsupportedOperationException();
     }
 
+    @Override
     public String remove(int index) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public boolean addAll(int index, Collection c) {
+    public List<String> subList(int fromIndex, int toIndex) {
         throw new UnsupportedOperationException();
-        //return super.addAll(index, c);
-    }
-
-    @Override
-    public List subList(int fromIndex, int toIndex) {
-        throw new UnsupportedOperationException();
-        //return super.subList(fromIndex, toIndex);
     }
 
     @Override
     protected void removeRange(int fromIndex, int toIndex) {
         throw new UnsupportedOperationException();
-        //super.removeRange(fromIndex, toIndex);
+    }
+
+    @Override
+    public boolean addAll(int index, Collection<? extends String> c) {
+        throw new UnsupportedOperationException();
     }
 }

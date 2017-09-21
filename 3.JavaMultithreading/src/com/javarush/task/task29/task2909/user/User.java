@@ -4,16 +4,35 @@ public class User {
     private String name;
     private String surname;
     private int age;
-
     private boolean man;
 
-    private Address address;
     private Work work;
+    private Address address;
 
     public User(String name, String surname, int age) {
         this.name = name;
         this.surname = surname;
         this.age = age;
+    }
+
+    public void printInfo() {
+        System.out.println("Имя: " + this.getName());
+        System.out.println("Фамилия: " + this.getSurname());
+    }
+
+    public void printAdditionalInfo() {
+        if (this.getAge() < 16)
+            System.out.println("Пользователь моложе 16 лет");
+        else
+            System.out.println("Пользователь старше 16 лет");
+    }
+
+    public boolean isMan() {
+        return man;
+    }
+
+    public void setMan(boolean man) {
+        this.man = man;
     }
 
     public String getName() {
@@ -52,31 +71,23 @@ public class User {
         this.work = work;
     }
 
-
-    public boolean isMan()
-    {
-        return man;
-    }
-
-    public void setMan(boolean man)
-    {
-        this.man = man;
-    }
-
     public String getBoss() {
-        return getWork().getBoss();
+        return work.getBoss();
     }
 
-    public void printInfo() {
-        System.out.println("Имя: " + getName());
-        System.out.println("Фамилия: " + getSurname());
-        printAdditionalInfo();
+    public String getCountry() {
+        return address.getCountry();
     }
 
-    public void printAdditionalInfo() {
-        if (age < 16)
-            System.out.println("Пользователь моложе 16 лет");
-        else
-            System.out.println("Пользователь старше 16 лет");
+    public void setCountry(String country) {
+        this.address.setCountry(country);
+    }
+
+    public String getCity() {
+        return address.getCity();
+    }
+
+    public void setCity(String city) {
+        this.address.setCity(city);
     }
 }

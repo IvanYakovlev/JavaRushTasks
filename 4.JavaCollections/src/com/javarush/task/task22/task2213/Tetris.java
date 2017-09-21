@@ -1,5 +1,7 @@
 package com.javarush.task.task22.task2213;
 
+import com.javarush.task.task25.task2515.KeyboardObserver;
+
 import java.awt.event.KeyEvent;
 
 /**

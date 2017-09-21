@@ -16,10 +16,10 @@ public class StudentsDataBase {
     }
 
     public static void removeStudent(int index) {
-        for (Student student : students) {
-            if (index < students.size()&&index>=0) {
-                students.remove(index);
-            }
+        try {
+            students.remove(index);
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
         }
     }
 
